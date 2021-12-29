@@ -1,0 +1,17 @@
+{
+    "name": "vuejs_nodejs_mettingroom",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "start:frontend": "cd Frontend && npm run serve",
+        "start:backend": "cd Backend && npm run start",
+        "start": "concurrently \"npm run start:backend\" \"npm run start:frontend\""
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "concurrently": "^6.4.0"
+    }
+}

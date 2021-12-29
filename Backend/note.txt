@@ -1,0 +1,38 @@
+//! Express validation test
+server.post('/', [
+    check('firstname').not().isEmpty(),
+    check('lastname').not().isEmpty(),
+], (req, res) => {
+    try {
+        validationResult(req).throw();
+        res.json(req.body);
+    } catch (err) {
+        res.status(400).json({ msg: 'Validation failed!' });
+    }
+});
+
+
+//! test cookie
+server.get('/s', (req, res) => {
+    req.session.item = '>> Hello Session! <<';
+    res.end('set session');
+})
+
+
+server.get('*', (req, res) => {
+    // res.json({ msg: "Server is started." });
+    // res.end(`<h1>Backend server started. session is ${req.session.item}</h1>`); // for test cookie
+    res.end(`<h1>404 not found</h1>`);
+});
+
+
+// test db
+db.query('show tables', (err, result) => {
+    console.log(result);
+})
+
+
+// session set
+router.get('/userLogin', (req, res) => {
+    res.json(req.session.userLogin);
+})
